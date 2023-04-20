@@ -188,12 +188,9 @@ const TableData = ({ rows, setData }: any) => {
             size={'medium'}
           >
             <EnhancedTableHead
-              numSelected={selected?.length}
               order={order}
               orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              rowCount={rows.length}
             />
             <TableBody>
               {stableSort(rows, getComparator(order, orderBy))
