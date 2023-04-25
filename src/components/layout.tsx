@@ -4,6 +4,7 @@ import { Poppins } from '@next/font/google';
 import { Box } from '@mui/material';
 import Header from './header';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 // If loading a variable font, you don't need to specify the font weight
 const PoppinsFont = Poppins({
@@ -12,6 +13,7 @@ const PoppinsFont = Poppins({
 });
 
 export default function Layout({ children }: any) {
+  const router = useRouter();
   return (
     <Box>
       <Head>
@@ -20,9 +22,15 @@ export default function Layout({ children }: any) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
-      <main className={PoppinsFont.className}>{children}</main>
-      <Footer />
+      {router.pathname !== '/login' && router.pathname !== '/register' && (
+        <Header />
+      )}
+      <Box>
+        <main className={PoppinsFont.className}>{children}</main>
+      </Box>
+      {router.pathname !== '/login' && router.pathname !== '/register' && (
+        <Footer />
+      )}
     </Box>
   );
 }

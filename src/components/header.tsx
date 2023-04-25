@@ -1,11 +1,12 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Popover, Typography } from '@mui/material';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 
 import { styled } from '@mui/material/styles';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useStore } from '@/store';
 
 const NotificationsIcon = styled(NotificationsNoneIcon)({
   marginRight: '2rem',
@@ -35,7 +36,21 @@ const MailIcon = styled(MailOutlineIcon)({
 
 const Header = () => {
   const router = useRouter();
-  const [active, setActive] = React.useState(false);
+  const { UserSlice } = useStore();
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
+    null
+  );
+
+  const handleClick = (event: any) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
 
   React.useEffect(() => {
     console.log(router.pathname);
@@ -52,7 +67,6 @@ const Header = () => {
       }}
     >
       <Typography
-        variant="h1"
         sx={{
           fontWeight: 'bold',
           color: '#000000',
@@ -134,17 +148,60 @@ const Header = () => {
       >
         <NotificationsIcon />
         <MailIcon />
-        <Box
-          component="img"
-          src="https://images.unsplash.com/photo-1677946061345-80328185774c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80"
-          alt="Profile"
-          width={50}
-          height={50}
-          sx={{
-            borderRadius: '50%',
-            objectFit: 'cover',
+
+        <Box onClick={handleClick} aria-describedby={id}>
+          <Box
+            component="img"
+            src="https://images.unsplash.com/photo-1677946061345-80328185774c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80"
+            alt="Profile"
+            width={50}
+            height={50}
+            sx={{
+              borderRadius: '50%',
+              objectFit: 'cover',
+            }}
+          />
+        </Box>
+        <Popover
+          id={id}
+          open={open}
+          anchorEl={anchorEl}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
           }}
-        />
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+          }}
+          sx={{
+            '& .MuiPaper-root': {
+              padding: '1rem 2rem',
+            },
+            '& a': {
+              textDecoration: 'none',
+              color: '#8b8b8b',
+              fontSize: '2rem',
+              cursor: 'pointer',
+              '&:hover': {
+                color: '#000',
+              },
+            },
+          }}
+        >
+          <Box>
+            <Link
+              href="/login"
+              onClick={() => {
+                setAnchorEl(null);
+                UserSlice.setIsLoggedIn(false);
+              }}
+            >
+              Log out
+            </Link>
+          </Box>
+        </Popover>
       </Box>
     </Box>
   );

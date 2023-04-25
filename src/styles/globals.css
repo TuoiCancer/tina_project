@@ -80,10 +80,12 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   font-size: 62.5%;
+  font-family: 'Popins', sans-serif;
 }
 
 body {
   color: #212529;
+  padding: 0 !important;
 }
 
 a {

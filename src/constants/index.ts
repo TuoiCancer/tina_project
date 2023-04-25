@@ -77,3 +77,23 @@ export const initData = [
     status: 'Active',
   },
 ];
+
+export const userData = [
+  {
+    id: 1,
+    image:
+      'https://images.unsplash.com/photo-1682323621685-23b589fc65a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+    username: 'John Smith',
+    password: '123456',
+    role: 'admin',
+  },
+
+  {
+    id: 2,
+    image:
+      'https://images.unsplash.com/photo-1682310934381-ea1437927bd0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+    username: 'Rose Lee',
+    password: '123456',
+    role: 'user',
+  },
+];
