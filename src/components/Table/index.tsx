@@ -151,15 +151,6 @@ const TableData = ({ rows, setData }: any) => {
     setOrderBy(property);
   };
 
-  const handleSelectAllClick = (event: { target: { checked: any } }) => {
-    if (event.target.checked) {
-      const newSelected = rows.map((n: { name: any }) => n.name);
-      setSelected(newSelected);
-      return;
-    }
-    setSelected([]);
-  };
-
   const handleChangePage = (
     event: any,
     newPage: React.SetStateAction<number>
@@ -171,8 +162,6 @@ const TableData = ({ rows, setData }: any) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
-  const isSelected = (name: any) => selected.indexOf(name) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =

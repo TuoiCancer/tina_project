@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   AppstoreOutlined,
   ContainerOutlined,
@@ -54,12 +54,21 @@ const items: MenuItem[] = [
       '7',
       <SendOutlined />
     ),
-    getItem('Cung ứng nhân lực', '8', <UsergroupAddOutlined />),
+    getItem(
+      <Link href="/test">Cung ứng nhân lực</Link>,
+      '8',
+      <UsergroupAddOutlined />
+    ),
   ]),
 ];
 const Sidebar = ({ selectedKey }: any) => {
   const [collapsed, setCollapsed] = useState(false);
+  const [role, setRole] = useState('client');
   const { UserSlice } = useStore();
+
+  useEffect(() => {
+    setRole(UserSlice?.user?.role);
+  }, [UserSlice?.user]);
 
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
@@ -68,6 +77,10 @@ const Sidebar = ({ selectedKey }: any) => {
     <Box
       sx={{
         marginRight: '1.6rem',
+        backgroundColor: '#fff',
+        borderRadius: '1rem',
+        padding: '1rem',
+        // height: '100%',
       }}
     >
       <Button
@@ -84,7 +97,7 @@ const Sidebar = ({ selectedKey }: any) => {
         theme="light"
         inlineCollapsed={collapsed}
         items={
-          UserSlice.user.role === 'admin'
+          role === 'admin'
             ? [
                 ...items,
                 getItem('Quản lý', 'sub2', <AppstoreOutlined />, [

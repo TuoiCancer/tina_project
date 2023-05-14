@@ -8,6 +8,14 @@ import Box from '@mui/material/Box';
 import { useRouter } from 'next/router';
 import { useStore } from '@/store';
 import { useEffect } from 'react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+import '../styles/slide.css';
+
 const RobotoFont = Poppins({
   subsets: ['latin'],
   weight: ['300', '400', '500', '700', '800', '900'],

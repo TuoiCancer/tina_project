@@ -2,31 +2,34 @@ import React from 'react';
 import { Box } from '@mui/material';
 import Image from 'next/image';
 import Sidebar from '@/components/sidebar';
+import SlideImg from '@/components/SlideImg';
+import Partners from '@/components/Partners';
 const Home = () => {
   return (
     <Box
       sx={{
-        display: 'flex',
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-        backgroundColor: '#E7E7E7',
-        padding: '4rem 4rem 8rem 4rem ',
+        position: 'relative',
+        height: '100%',
+        '& > img': {
+          objectFit: 'cover',
+          zIndex: -1,
+        },
       }}
     >
-      <Sidebar selectedKey="1" />
+      <Image src="/home.jpg" alt="home" fill />
       <Box
         sx={{
-          width: '80%',
-          height: 600,
-          position: 'relative',
+          display: 'flex',
+          alignItems: 'flex-start',
+          justifyContent: 'center',
+          padding: '4rem 4rem 8rem 4rem ',
+          height: '100%',
         }}
       >
-        <Image
-          fill
-          alt="The Managers Guide to Easy One-on-Ones"
-          src="https://a.storyblok.com/f/167495/1620x720/ff0312819b/one-on-one-meeting.png"
-        />
+        <Sidebar selectedKey="1" />
+        <SlideImg />
       </Box>
+      <Partners />
     </Box>
   );
 };

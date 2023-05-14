@@ -51,7 +51,7 @@ const Footer = () => {
           objectFit="cover"
         />
         <Box>
-          <Typography variant="h3">Easy1 Holdings</Typography>
+          <Typography variant="h3"> Tòa nhà Easy1</Typography>
           <Box>
             <Typography variant="h5">
               Địa chỉ: 123 Trần Hưng Đạo, Phường 5, Quận 5, TP. Hồ Chí Minh

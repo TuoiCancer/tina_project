@@ -8,6 +8,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useStore } from '@/store';
 
+import LogoutIcon from '@mui/icons-material/Logout';
+
 const NotificationsIcon = styled(NotificationsNoneIcon)({
   marginRight: '2rem',
   fontSize: '2.6rem',
@@ -96,7 +98,7 @@ const Header = () => {
             textDecoration: 'none',
             color: '#8b8b8b',
             fontSize: '2rem',
-            marginRight: '3.2rem',
+            margin: '0 3rem',
             cursor: 'pointer',
             position: 'relative',
             '&::after': {
@@ -124,20 +126,20 @@ const Header = () => {
           href="/home"
           className={`${router.pathname.includes('home') && 'active'}`}
         >
-          Home
+          Trang chủ
         </Link>
         <Link
           href="/aboutme"
           className={`${router.pathname.includes('aboutme') && 'active'}`}
         >
           {' '}
-          About Us
+          Về chúng tôi
         </Link>
         <Link
           href="/contactUs"
           className={`${router.pathname.includes('contactUs') && 'active'}`}
         >
-          Contact
+          Liên hệ
         </Link>
       </Box>
       <Box
@@ -175,31 +177,27 @@ const Header = () => {
             vertical: 'top',
             horizontal: 'center',
           }}
-          sx={{
-            '& .MuiPaper-root': {
-              padding: '1rem 2rem',
-            },
-            '& a': {
-              textDecoration: 'none',
-              color: '#8b8b8b',
-              fontSize: '2rem',
-              cursor: 'pointer',
-              '&:hover': {
-                color: '#000',
-              },
-            },
-          }}
         >
-          <Box>
-            <Link
-              href="/login"
-              onClick={() => {
-                setAnchorEl(null);
-                UserSlice.setIsLoggedIn(false);
-              }}
-            >
-              Log out
-            </Link>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              padding: '1rem 2rem',
+              '& svg': {
+                marginRight: '1rem',
+                fontSize: '2rem',
+              },
+              '& p': {
+                fontSize: '1.6rem',
+              },
+            }}
+            onClick={() => {
+              setAnchorEl(null);
+              UserSlice.setIsLoggedIn(false);
+            }}
+          >
+            <LogoutIcon />
+            <Typography>Log out</Typography>
           </Box>
         </Popover>
       </Box>
