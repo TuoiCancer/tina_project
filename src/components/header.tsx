@@ -183,6 +183,7 @@ const Header = () => {
               display: 'flex',
               alignItems: 'center',
               padding: '1rem 2rem',
+              cursor: 'pointer',
               '& svg': {
                 marginRight: '1rem',
                 fontSize: '2rem',

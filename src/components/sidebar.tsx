@@ -55,7 +55,7 @@ const items: MenuItem[] = [
       <SendOutlined />
     ),
     getItem(
-      <Link href="/test">Cung ứng nhân lực</Link>,
+      <Link href="/humans">Cung ứng nhân lực</Link>,
       '8',
       <UsergroupAddOutlined />
     ),
