@@ -50,11 +50,18 @@ const RowItem = ({ row, listRow, setData }: any) => {
           fontSize: '1.4rem',
           textAlign: 'center',
           borderBottom: 'none',
-          padding: '1rem 0',
+          padding: { xs: '1rem', md: '1rem 0' },
         },
       }}
     >
-      <TableCell component="th" scope="row" padding="none">
+      <TableCell
+        component="th"
+        scope="row"
+        padding="none"
+        style={{
+          whiteSpace: 'nowrap',
+        }}
+      >
         <Box
           component="img"
           src={row.image}
@@ -67,11 +74,33 @@ const RowItem = ({ row, listRow, setData }: any) => {
           }}
         />
       </TableCell>
-      <TableCell>{row.name}</TableCell>
-      <TableCell>{row.position}</TableCell>
-      <TableCell>{row.department}</TableCell>
+      <TableCell
+        style={{
+          whiteSpace: 'nowrap',
+        }}
+      >
+        {row.name}
+      </TableCell>
+      <TableCell
+        style={{
+          whiteSpace: 'nowrap',
+        }}
+      >
+        {row.position}
+      </TableCell>
+      <TableCell
+        style={{
+          whiteSpace: 'nowrap',
+        }}
+      >
+        {row.department}
+      </TableCell>
       <TableCell>{row.salary} $</TableCell>
-      <TableCell>{row.status}</TableCell>
+      <TableCell>
+        {row.status === 'Hoạt động' || row.status === 'hoạt động'
+          ? 'Hoạt động'
+          : 'Nghỉ việc'}
+      </TableCell>
       <TableCell
         sx={{
           display: 'flex',

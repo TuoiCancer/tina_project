@@ -28,9 +28,9 @@ const Footer = () => {
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
-          alignItems: 'flex-start',
+          alignItems: { xs: 'center', md: 'flex-start' },
           color: 'white',
-          padding: '2rem 20rem 3rem 4rem',
+          padding: { xs: '1rem', md: '2rem 20rem 3rem 4rem' },
           '& h5': {
             fontSize: '1.5rem',
             padding: '0.4rem 0',
@@ -40,7 +40,10 @@ const Footer = () => {
             fontWeight: '700',
             textTransform: 'uppercase',
             paddingBottom: '2rem',
+            marginTop: { xs: '4rem', md: '0' },
           },
+          flexDirection: { xs: 'column', md: 'row' },
+          textAlign: { xs: 'center', md: 'left' },
         }}
       >
         <Image

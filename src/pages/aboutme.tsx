@@ -18,8 +18,9 @@ const AboutMe = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: ' 4rem 6rem 8rem 6rem ',
-        marginTop: '2rem',
+        padding: { xs: '1rem', md: '4rem 6rem 8rem 6rem' },
+        marginTop: { Xs: '0', md: '2rem' },
+        flexDirection: { xs: 'column-reverse', md: 'row' },
       }}
     >
       <Image
@@ -34,7 +35,8 @@ const AboutMe = () => {
       <Box
         sx={{
           flex: 1.5,
-          paddingRight: '4rem',
+          paddingRight: { xs: '0', md: '4rem' },
+          marginTop: { xs: '2rem', md: '0' },
         }}
       >
         <Typography
@@ -42,7 +44,8 @@ const AboutMe = () => {
           variant="h3"
           sx={{
             fontWeight: '700',
-            paddingBottom: '4rem',
+            paddingBottom: { xs: '1rem', md: '4rem' },
+            fontSize: { xs: '2.4rem', md: '3.2rem' },
           }}
         >
           GIỚI THIỆU VỀ EASY1 HOLDINGS

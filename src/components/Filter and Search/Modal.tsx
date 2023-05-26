@@ -37,14 +37,6 @@ const ModalItem = ({ open, setOpen, setData }: any) => {
   const handleClose = () => setOpen(false);
 
   const handleSubmit = () => {
-    console.log({
-      name,
-      img,
-      position,
-      department,
-      salary,
-      status,
-    });
     if (!name || !img || !position || !department || !salary) {
       return toast.warn('Please fill all the fields', {
         position: 'top-right',
@@ -83,7 +75,7 @@ const ModalItem = ({ open, setOpen, setData }: any) => {
             fontWeight: 'bold',
           }}
         >
-          Form field
+          Biểu mẫu
         </Typography>
         <Box
           sx={{
@@ -101,7 +93,7 @@ const ModalItem = ({ open, setOpen, setData }: any) => {
         >
           <TextField
             id="name"
-            label="Name"
+            label="Tên nhân viên"
             variant="outlined"
             required
             value={name}
@@ -109,15 +101,14 @@ const ModalItem = ({ open, setOpen, setData }: any) => {
           />
           <TextField
             id="img"
-            label="Avatar"
+            label="Hình ảnh"
             variant="outlined"
-            required
             value={img}
             onChange={(e) => setImg(e.target.value)}
           />
           <TextField
             id="position"
-            label="Position"
+            label="Vị trí"
             variant="outlined"
             value={position}
             onChange={(e) => setPosition(e.target.value)}
@@ -127,7 +118,6 @@ const ModalItem = ({ open, setOpen, setData }: any) => {
             labelId="department"
             id="department"
             value={department}
-            label="Department"
             onChange={(e) => setDepartment(e.target.value)}
           >
             <MenuItem value="Mobile">Mobile</MenuItem>
@@ -153,7 +143,7 @@ const ModalItem = ({ open, setOpen, setData }: any) => {
                 onChange={(e) => setStatus(e.target.checked)}
               />
             }
-            label="Active"
+            label="Hoạt động"
             sx={{
               '& .MuiTypography-root': {
                 fontSize: '1.4rem',

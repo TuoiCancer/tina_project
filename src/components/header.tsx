@@ -1,14 +1,15 @@
 import React from 'react';
-import { Box, Popover, Typography } from '@mui/material';
+import { Box, Popover, Typography, useMediaQuery } from '@mui/material';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useStore } from '@/store';
 
 import LogoutIcon from '@mui/icons-material/Logout';
+import MenuInMobile from './menuMobile';
 
 const NotificationsIcon = styled(NotificationsNoneIcon)({
   marginRight: '2rem',
@@ -39,6 +40,10 @@ const MailIcon = styled(MailOutlineIcon)({
 const Header = () => {
   const router = useRouter();
   const { UserSlice } = useStore();
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null
   );
@@ -53,10 +58,6 @@ const Header = () => {
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
-
-  React.useEffect(() => {
-    console.log(router.pathname);
-  }, [router.pathname]);
 
   return (
     <Box
@@ -91,7 +92,7 @@ const Header = () => {
       </Typography>
       <Box
         sx={{
-          display: 'flex',
+          display: { xs: 'none', md: 'flex' },
           alignItems: 'center',
           height: '100%',
           '& a': {
@@ -144,7 +145,7 @@ const Header = () => {
       </Box>
       <Box
         sx={{
-          display: 'flex',
+          display: { xs: 'none', md: 'flex' },
           alignItems: 'center',
         }}
       >
@@ -161,6 +162,7 @@ const Header = () => {
             sx={{
               borderRadius: '50%',
               objectFit: 'cover',
+              cursor: 'pointer',
             }}
           />
         </Box>
@@ -198,10 +200,11 @@ const Header = () => {
             }}
           >
             <LogoutIcon />
-            <Typography>Log out</Typography>
+            <Typography>Đăng xuất </Typography>
           </Box>
         </Popover>
       </Box>
+      {isMobile && <MenuInMobile />}
     </Box>
   );
 };

@@ -11,10 +11,13 @@ import {
   ApartmentOutlined,
   SendOutlined,
   UsergroupAddOutlined,
+  AreaChartOutlined,
+  PhoneOutlined,
+  ContactsOutlined,
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Button, Menu } from 'antd';
-import { Box } from '@mui/material';
+import { Box, useMediaQuery, useTheme } from '@mui/material';
 import Link from 'next/link';
 import { useStore } from '@/store';
 type MenuItem = Required<MenuProps>['items'][number];
@@ -38,7 +41,7 @@ function getItem(
 const items: MenuItem[] = [
   getItem(<Link href="/home">Trang chủ</Link>, '1', <PieChartOutlined />),
 
-  getItem('Lĩnh vực kinh doanh', 'sub1', <MailOutlined />, [
+  getItem('Lĩnh vực kinh doanh', 'sub1', <AreaChartOutlined />, [
     getItem(
       <Link href="/marketing">Marketing truyền thông </Link>,
       '5',
@@ -61,11 +64,14 @@ const items: MenuItem[] = [
     ),
   ]),
 ];
-const Sidebar = ({ selectedKey }: any) => {
+const Sidebar = ({ selectedKey, setOpen }: any) => {
   const [collapsed, setCollapsed] = useState(false);
   const [role, setRole] = useState('client');
   const { UserSlice } = useStore();
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  console.log('user', UserSlice?.user);
   useEffect(() => {
     setRole(UserSlice?.user?.role);
   }, [UserSlice?.user]);
@@ -73,10 +79,87 @@ const Sidebar = ({ selectedKey }: any) => {
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
   };
+
+  const getListItem = () => {
+    if (role === 'admin') {
+      if (isMobile) {
+        console.log('items', items);
+        return [
+          ...items,
+          getItem('Quản lý', 'sub2', <AppstoreOutlined />, [
+            getItem(
+              <Link href="/employee">Quản lí nhân sự </Link>,
+              '2',
+              <DesktopOutlined />
+            ),
+            getItem(
+              <Link href="/finance">Quản lí tài chính </Link>,
+              '3',
+              <ContainerOutlined />
+            ),
+          ]),
+          getItem(
+            <Link href="/aboutme">Về chúng tôi</Link>,
+            '9',
+            <ContactsOutlined />
+          ),
+          getItem(
+            <Link href="/contactUs">Liên hệ</Link>,
+            '10',
+            <MailOutlined />
+          ),
+        ];
+      }
+      return [
+        ...items,
+        getItem('Quản lý', 'sub2', <AppstoreOutlined />, [
+          getItem(
+            <Link href="/employee">Quản lí nhân sự </Link>,
+            '2',
+            <DesktopOutlined />
+          ),
+          getItem(
+            <Link href="/finance">Quản lí tài chính </Link>,
+            '3',
+            <ContainerOutlined />
+          ),
+        ]),
+      ];
+    } else if (role === 'client') {
+      if (isMobile) {
+        return [
+          ...items,
+          getItem(
+            <Link href="/aboutme">Về chúng tôi</Link>,
+            '9',
+            <ContactsOutlined />
+          ),
+          getItem(
+            <Link href="/contactUs">Liên hệ</Link>,
+            '10',
+            <MailOutlined />
+          ),
+        ];
+      }
+      return items;
+    }
+  };
+  if (isMobile)
+    return (
+      <Menu
+        defaultSelectedKeys={[selectedKey]}
+        defaultOpenKeys={['sub1', 'sub2']}
+        mode="inline"
+        theme="light"
+        inlineCollapsed={collapsed}
+        onClick={(e) => setOpen(false)}
+        items={getListItem()}
+      />
+    );
   return (
     <Box
       sx={{
-        marginRight: '1.6rem',
+        marginRight: { xs: '0', md: '1.6rem' },
         backgroundColor: '#fff',
         borderRadius: '1rem',
         padding: '1rem',
@@ -96,25 +179,8 @@ const Sidebar = ({ selectedKey }: any) => {
         mode="inline"
         theme="light"
         inlineCollapsed={collapsed}
-        items={
-          role === 'admin'
-            ? [
-                ...items,
-                getItem('Quản lý', 'sub2', <AppstoreOutlined />, [
-                  getItem(
-                    <Link href="/employee">Quản lí nhân sự </Link>,
-                    '2',
-                    <DesktopOutlined />
-                  ),
-                  getItem(
-                    <Link href="/finance">Quản lí tài chính </Link>,
-                    '3',
-                    <ContainerOutlined />
-                  ),
-                ]),
-              ]
-            : items
-        }
+        onClick={(e) => setOpen(false)}
+        items={getListItem()}
       />
     </Box>
   );

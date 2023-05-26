@@ -1,17 +1,25 @@
 import Sidebar from '@/components/sidebar';
-import { Box, Typography } from '@mui/material';
+import {
+  Box,
+  Typography,
+  useMediaQuery,
+  useTheme,
+  useThemeProps,
+} from '@mui/material';
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import Image from 'next/image';
 import React from 'react';
 
 const IntroProto = ({ selectedKey, title, content, imgSrc }: any) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <Box
       sx={{
         display: 'flex',
         alignItems: 'flex-start',
         justifyContent: 'center',
-        padding: '4rem 4rem 8rem 4rem ',
+        padding: { xs: '1rem', md: '4rem 4rem 8rem 4rem ' },
         position: 'relative',
       }}
     >
@@ -24,7 +32,7 @@ const IntroProto = ({ selectedKey, title, content, imgSrc }: any) => {
           zIndex: '-1',
         }}
       />
-      <Sidebar selectedKey={selectedKey} />
+      {!isMobile && <Sidebar selectedKey={selectedKey} setOpen={() => {}} />}
 
       <Box>
         <Box
@@ -73,11 +81,12 @@ const IntroProto = ({ selectedKey, title, content, imgSrc }: any) => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            flexDirection: { xs: 'column', md: 'row' },
           }}
         >
           <Box
             sx={{
-              padding: '0 4rem',
+              padding: { xs: '0 1rem', md: '0 4rem' },
               '& p': {
                 fontSize: '2rem',
                 fontWeight: '300',
@@ -86,7 +95,11 @@ const IntroProto = ({ selectedKey, title, content, imgSrc }: any) => {
             }}
           >
             {content.map((item: any) => {
-              return <Typography>{item}</Typography>;
+              return (
+                <>
+                  &nbsp;<Typography>{item}</Typography>
+                </>
+              );
             })}
           </Box>
           <Box

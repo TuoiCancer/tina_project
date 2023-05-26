@@ -8,7 +8,7 @@ export const initData = [
     position: 'Recruiter',
     salary: 5000,
     type: 'fulltime',
-    status: 'Active',
+    status: 'Hoạt động',
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ export const initData = [
     position: 'Sale',
     salary: 4000,
     type: 'fulltime',
-    status: 'Archived',
+    status: 'Nghỉ việc',
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ export const initData = [
     position: 'Sales Manager',
     salary: 8000,
     type: 'fulltime',
-    status: 'Active',
+    status: 'Hoạt động',
   },
   {
     id: 4,
@@ -41,7 +41,7 @@ export const initData = [
     position: 'Software Engineer',
     salary: 6000,
     type: 'fulltime',
-    status: 'Active',
+    status: 'Hoạt động',
   },
   {
     id: 5,
@@ -52,7 +52,7 @@ export const initData = [
     position: 'Accountant',
     salary: 5500,
     type: 'parttime',
-    status: 'Active',
+    status: 'Hoạt động',
   },
   {
     id: 6,
@@ -63,7 +63,7 @@ export const initData = [
     position: 'Marketing Manager',
     salary: 7000,
     type: 'fulltime',
-    status: 'Active',
+    status: 'Hoạt động',
   },
   {
     id: 7,
@@ -74,7 +74,7 @@ export const initData = [
     position: 'Sales Associate',
     salary: 4500,
     type: 'parttime',
-    status: 'Active',
+    status: 'Hoạt động',
   },
 ];
 
@@ -94,6 +94,6 @@ export const userData = [
       'https://images.unsplash.com/photo-1682310934381-ea1437927bd0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
     username: 'Rose Lee',
     password: '123456',
-    role: 'user',
+    role: 'client',
   },
 ];

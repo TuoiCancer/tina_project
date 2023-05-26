@@ -7,7 +7,7 @@ const ItemContact = ({ icon, title, description }: any) => {
       sx={{
         display: 'flex',
         alignItems: 'center',
-        margin: '1rem',
+        margin: { xs: '1rem 0', md: '1rem' },
         '& svg': {
           fontSize: '2.4rem',
           marginRight: '1.2rem',
@@ -26,6 +26,7 @@ const ItemContact = ({ icon, title, description }: any) => {
             fontWeight: '700',
             fontSize: '1.6rem',
             marginRight: '1.2rem',
+            whiteSpace: 'nowrap',
           }}
         >
           {title}

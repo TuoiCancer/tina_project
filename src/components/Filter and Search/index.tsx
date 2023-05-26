@@ -5,6 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/material/styles';
 import SelectItem from './SelectItem';
 import ModalItem from './Modal';
+import { initData } from '@/constants';
 
 const Search = styled(SearchIcon)({
   marginRight: '1.2rem',
@@ -14,6 +15,7 @@ const Search = styled(SearchIcon)({
 });
 
 const FilterAndSearch = ({
+  data,
   type,
   serachValue,
   setSearchValue,
@@ -26,7 +28,6 @@ const FilterAndSearch = ({
   setIsSearch,
 }: any) => {
   const [openModal, setOpenModal] = React.useState(false);
-
   return (
     <Box>
       {/* Search bar */}
@@ -34,8 +35,10 @@ const FilterAndSearch = ({
         sx={{
           display: 'flex',
           alignItems: 'center',
-          backgroundColor: '#E7E7E7',
-          padding: '2rem 4rem ',
+          backgroundColor: '#575757',
+          padding: { xs: '2rem 1rem', md: '2rem 4rem ' },
+          borderTopLeftRadius: '5px',
+          borderTopRightRadius: '5px',
         }}
       >
         <Search onClick={() => setIsSearch(true)} />
@@ -47,9 +50,11 @@ const FilterAndSearch = ({
               setIsSearch(true);
             }
           }}
-          placeholder="Seach by name..."
+          placeholder="Nhập tên nhân viên ..."
           sx={{
             fontSize: '1.6rem',
+            color: '#fff',
+
             '&::before, &::after': {
               borderBottom: 'none',
             },
@@ -62,45 +67,37 @@ const FilterAndSearch = ({
         />
       </Box>
       {/* Filter and Add employee Button */}
-
       <Box
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          padding: '2rem 4rem',
+          padding: { xs: '1rem', md: '2rem 4rem' },
+          '& .MuiInputBase-root': {
+            marginTop: { xs: '1.2rem', md: '0' },
+          },
         }}
       >
         <Box>
           <SelectItem
             state={type}
             setState={(value: any) => setType(value)}
-            values={['All employee', 'Active', 'Archived']}
-            placeholder="All employee"
+            values={['Tất cả nhân viên', 'Hoạt động', 'Nghỉ việc']}
           />
           <SelectItem
             state={department}
             setState={(value: any) => setDepartment(value)}
             values={[
-              'Marketing',
-              'Design',
-              'Android',
-              'Backend',
-              'Frontend',
-              'Development',
+              'Tất cả phòng ban',
+              ...[...new Set(initData?.map((item: any) => item.department))],
             ]}
-            placeholder="All employee"
           />
           <SelectItem
             state={position}
             setState={(value: any) => setPosition(value)}
             values={[
-              'Backend Developer',
-              'Frontend Developer',
-              'Sorftware Engineer',
-              'Project Manager',
-              'Bussiness Analyst',
-              'Sale',
+              'Tất cả vị trí',
+              ...[...new Set(initData?.map((item: any) => item.position))],
             ]}
             placeholder="All employee"
           />
@@ -111,17 +108,18 @@ const FilterAndSearch = ({
             color: '#fff',
             fontSize: '1.6rem',
             fontWeight: 'bold',
-            padding: '1.5rem 3rem',
-            margin: '2rem 0 0 4rem',
+            padding: { xs: '1rem 2rem', md: '1.5rem 3rem' },
+            margin: { xs: '0', md: '2rem 0 0 4rem' },
+            cursor: 'pointer',
+            textTransform: 'capitalize',
+            whiteSpace: 'nowrap',
             '&:hover': {
               backgroundColor: '#0EC9AE',
             },
-            cursor: 'pointer',
-            textTransform: 'lowercase',
           }}
           onClick={() => setOpenModal(true)}
         >
-          Add Employee
+          Thêm nhân viên
         </Button>
       </Box>
       <ModalItem

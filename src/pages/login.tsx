@@ -1,5 +1,5 @@
 import { Box, Button, TextField, Typography } from '@mui/material';
-import { Poppins } from '@next/font/google';
+import { Poppins, Roboto } from '@next/font/google';
 import Image from 'next/image';
 import React, { useEffect } from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -10,6 +10,11 @@ import { useStore } from '@/store';
 import { useRouter } from 'next/router';
 
 const PoppinsFont = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+});
+
+const RobotoFont = Roboto({
   subsets: ['latin'],
   weight: ['400', '500', '700'],
 });
@@ -32,7 +37,6 @@ const Login = () => {
         password,
       })
       .then((res: any) => {
-        console.log(res.data);
         toast.success('Login success');
         UserSlice.setUser(res.data);
         UserSlice.setIsLoggedIn(true);
@@ -46,6 +50,7 @@ const Login = () => {
       sx={{
         display: 'flex',
         alignItems: 'flex-start',
+        flexDirection: { xs: 'column-reverse', md: 'row' },
         justifyContent: 'space-between',
         '& h1,h2,h3,p': {
           fontFamily: 'Poppins',
@@ -55,7 +60,7 @@ const Login = () => {
       <Box
         sx={{
           flex: 1,
-          padding: ' 4rem',
+          padding: { xs: '2rem', md: '4rem' },
         }}
       >
         <Box>
@@ -89,27 +94,29 @@ const Login = () => {
             flexDirection: 'column',
             alignItems: 'flex-start',
             justifyContent: 'center',
-            width: '80%',
+            width: { xs: '100%', md: '80%' },
           }}
         >
           <Typography
+            className={RobotoFont.className}
             sx={{
               fontSize: '2rem',
               color: '#000000',
-              margin: '1rem 0 4rem  0',
+              margin: { xs: '1rem 0 ', md: '1rem 0 4rem  0' },
+              fontFamily: 'Roboto !important',
             }}
           >
-            Welcome Back, Please login to your account
+            Chào mừng bạn đến với Easy1, hãy đăng nhập để tiếp tục
           </Typography>
           <Typography
             sx={{
               fontSize: '1.5rem',
               color: '#000000',
-              margin: '4rem 0 1rem 0',
+              margin: { xs: '1rem', md: '4rem 0 1rem 0' },
               fontWeight: '600',
             }}
           >
-            Email
+            Tên đăng nhập
           </Typography>
           <TextField
             placeholder="x@gmail.com"
@@ -136,7 +143,7 @@ const Login = () => {
               fontWeight: '600',
             }}
           >
-            Password
+            Mật khẩu
           </Typography>
 
           <Box
@@ -200,26 +207,23 @@ const Login = () => {
               },
             }}
           >
-            Login
+            Đăng nhập
           </Button>
         </Box>
       </Box>
       <Box
         sx={{
           width: '100%',
-          height: '100vh',
+          height: { xs: '180px', md: '100vh' },
           position: 'relative',
-          flex: 1.5,
+          flex: { md: 1.5 },
+          '& img': {
+            objectFit: 'cover',
+            borderRadius: { xs: '0', md: '1rem' },
+          },
         }}
       >
-        <Image
-          src="/bg.jpg"
-          alt="bg"
-          fill
-          style={{
-            borderRadius: '1rem',
-          }}
-        />
+        <Image src="/bg.jpg" alt="bg" fill />
       </Box>
     </Box>
   );

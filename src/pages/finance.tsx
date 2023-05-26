@@ -1,9 +1,11 @@
 import Sidebar from '@/components/sidebar';
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, useMediaQuery, useTheme, useThemeProps } from '@mui/material';
 import Image from 'next/image';
 
 const Finance = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <Box
       sx={{
@@ -14,7 +16,8 @@ const Finance = () => {
         padding: '2rem 4rem ',
       }}
     >
-      <Sidebar selectedKey="3" />
+      {!isMobile && <Sidebar selectedKey="3" />}
+
       <Box
         sx={{
           width: '80%',

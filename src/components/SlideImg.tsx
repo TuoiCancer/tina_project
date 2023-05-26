@@ -62,8 +62,8 @@ const SlideImg = () => {
                 sx={{
                   color: '#fff',
                   fontWeight: 900,
-                  fontSize: '3.8rem',
-                  maxWidth: '90rem',
+                  fontSize: { xs: '2.8rem', md: '3.8rem' },
+                  maxWidth: { xs: '42rem', md: '90rem' },
                   textAlign: 'center',
                 }}
               >

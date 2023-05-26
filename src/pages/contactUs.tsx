@@ -40,13 +40,14 @@ const ContactUs = () => {
       <Box
         sx={{
           width: '100%',
-          height: 600,
+          height: { xs: '100%', md: 600 },
           position: 'relative',
           display: 'flex',
           alignItems: 'flex-start',
           justifyContent: 'space-around',
-          padding: ' 7rem ',
-          marginTop: '2rem',
+          padding: { xs: '2rem', md: ' 7rem ' },
+          marginTop: { xs: '0', md: '2rem' },
+          flexDirection: { xs: 'column', md: 'row' },
         }}
       >
         <Image
@@ -64,7 +65,7 @@ const ContactUs = () => {
             flexDirection: 'column',
             alignItems: 'flex-start',
             width: '100%',
-            margin: '0 12rem',
+            margin: { xs: '2rem 0', md: '0 12rem' },
             '& .MuiFormControl-root': {
               width: '100%',
               marginBottom: '1.6rem',
@@ -178,7 +179,7 @@ const ContactUs = () => {
             variant="h4"
             sx={{
               fontWeight: '800',
-              fontSize: '2.8rem',
+              fontSize: { xs: '2rem', md: '2.8rem' },
               marginBottom: '1.2rem',
             }}
           >
@@ -188,7 +189,7 @@ const ContactUs = () => {
             variant="h4"
             sx={{
               fontWeight: '300',
-              marginBottom: '2.4rem',
+              marginBottom: { xs: '0', md: '2.4rem' },
               fontSize: '1.4rem',
             }}
           >
@@ -229,11 +230,13 @@ const ContactUs = () => {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'flex-start',
+          flexDirection: { xs: 'column', md: 'row' },
         }}
       >
         <Box
           sx={{
-            padding: '2rem 4rem',
+            display: { xs: 'none', md: 'block' },
+            padding: { xs: '2rem', md: '2rem 4rem' },
           }}
         >
           <Typography

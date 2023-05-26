@@ -24,7 +24,6 @@ const RobotoFont = Poppins({
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const { UserSlice } = useStore();
-  console.log('is logged in', UserSlice.isLoggedIn);
   useEffect(() => {
     if (UserSlice.isLoggedIn) router.push('/home');
     else router.push('/login');

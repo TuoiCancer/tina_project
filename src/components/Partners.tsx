@@ -20,6 +20,9 @@ const Partners = () => {
     <Box
       sx={{
         paddingBottom: '4rem',
+        '& .swiper': {
+          width: { xs: '100%', md: '50%' },
+        },
       }}
     >
       <Typography
@@ -56,7 +59,6 @@ const Partners = () => {
         }}
         modules={[Pagination]}
         style={{
-          width: '50%',
           padding: '2rem 0 6rem 0',
           textAlign: 'center',
         }}

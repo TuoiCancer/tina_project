@@ -26,37 +26,37 @@ const headCells = [
     id: 'employee',
     numeric: false,
     disablePadding: false,
-    label: 'Employee',
+    label: 'Nhân viên',
   },
   {
     id: 'position',
     numeric: false,
     disablePadding: false,
-    label: 'Position',
+    label: 'Vị trí ',
   },
   {
     id: 'department',
     numeric: false,
     disablePadding: false,
-    label: 'Department',
+    label: 'Phòng ban',
   },
   {
     id: 'salary',
     numeric: false,
     disablePadding: false,
-    label: 'Salary',
+    label: 'Mức lương',
   },
   {
     id: 'status',
     numeric: false,
     disablePadding: false,
-    label: 'Status',
+    label: 'Trạng thái',
   },
   {
     id: 'setting',
     numeric: false,
     disablePadding: false,
-    label: 'Setting',
+    label: 'Cài đặt',
   },
 ];
 
@@ -87,7 +87,11 @@ function EnhancedTableHead(props: {
   };
 
   return (
-    <TableHead>
+    <TableHead
+      style={{
+        whiteSpace: 'nowrap',
+      }}
+    >
       <TableRow
         sx={{
           backgroundColor: '#f5f5f5',
@@ -169,7 +173,7 @@ const TableData = ({ rows, setData }: any) => {
 
   return (
     <Box sx={{ width: '100%', paddingTop: '2rem' }}>
-      <Paper sx={{ width: '100%', mb: 2 }}>
+      <Paper sx={{ width: '100%' }}>
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
@@ -198,7 +202,12 @@ const TableData = ({ rows, setData }: any) => {
                     height: 53 * emptyRows,
                   }}
                 >
-                  <TableCell colSpan={6} />
+                  <TableCell
+                    colSpan={6}
+                    style={{
+                      whiteSpace: 'nowrap',
+                    }}
+                  />
                 </TableRow>
               )}
             </TableBody>

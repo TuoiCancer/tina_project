@@ -1,3 +1,4 @@
+import { initData } from '@/constants';
 import {
   Box,
   Button,
@@ -27,13 +28,14 @@ const style = {
 };
 
 const ModalEdit = ({ open, setOpen, employee, setData }: any) => {
+  console.log('employee', employee);
   const [name, setName] = React.useState(employee.name);
   const [img, setImg] = React.useState(employee.image);
   const [position, setPosition] = React.useState(employee.position);
   const [department, setDepartment] = React.useState(employee.department);
   const [salary, setSalary] = React.useState(employee.salary);
   const [status, setStatus] = React.useState(
-    employee.status === 'active' ? true : false
+    employee.status === 'Hoạt động' ? true : false
   );
 
   const handleClose = () => setOpen(false);
@@ -54,7 +56,7 @@ const ModalEdit = ({ open, setOpen, employee, setData }: any) => {
         position,
         department,
         salary,
-        status: status ? 'active' : 'archived',
+        status: status ? 'Hoạt động' : 'Nghỉ việc',
       };
       return [...prev];
     });
@@ -79,9 +81,7 @@ const ModalEdit = ({ open, setOpen, employee, setData }: any) => {
             fontSize: '2.6rem',
             fontWeight: 'bold',
           }}
-        >
-          Form field
-        </Typography>
+        ></Typography>
         <Box
           sx={{
             display: 'flex',
@@ -98,7 +98,7 @@ const ModalEdit = ({ open, setOpen, employee, setData }: any) => {
         >
           <TextField
             id="name"
-            label="Name"
+            label="Tên nhân viên "
             variant="outlined"
             required
             value={name}
@@ -106,15 +106,14 @@ const ModalEdit = ({ open, setOpen, employee, setData }: any) => {
           />
           <TextField
             id="img"
-            label="Avatar"
+            label="Hình ảnh"
             variant="outlined"
-            required
             value={img}
             onChange={(e) => setImg(e.target.value)}
           />
           <TextField
             id="position"
-            label="Position"
+            label="Vị trí"
             variant="outlined"
             value={position}
             onChange={(e) => setPosition(e.target.value)}
@@ -124,19 +123,20 @@ const ModalEdit = ({ open, setOpen, employee, setData }: any) => {
             labelId="department"
             id="department"
             value={department}
-            label="Department"
+            label="Phòng ban"
             onChange={(e) => setDepartment(e.target.value)}
           >
-            <MenuItem value="Mobile">Mobile</MenuItem>
-            <MenuItem value="Marketing">Marketing</MenuItem>
-            <MenuItem value="Design">Design</MenuItem>
-            <MenuItem value="Backend">Backend</MenuItem>
-            <MenuItem value="Frontend">Frontend</MenuItem>
-            <MenuItem value="Development">Development</MenuItem>
+            {initData
+              .map((item: any) => item.department)
+              .map((item: any, index: number) => (
+                <MenuItem key={index} value={item}>
+                  {item}
+                </MenuItem>
+              ))}
           </Select>
           <TextField
             id="salary"
-            label="Salary"
+            label="Lương"
             variant="outlined"
             value={salary}
             onChange={(e) => setSalary(e.target.value)}
@@ -150,7 +150,7 @@ const ModalEdit = ({ open, setOpen, employee, setData }: any) => {
                 onChange={(e) => setStatus(e.target.checked)}
               />
             }
-            label="Active"
+            label="Hoạt động"
             sx={{
               '& .MuiTypography-root': {
                 fontSize: '1.4rem',
@@ -173,7 +173,7 @@ const ModalEdit = ({ open, setOpen, employee, setData }: any) => {
           }}
           onClick={handleSubmit}
         >
-          Save
+          Lưu
         </Button>
       </Box>
     </Modal>
